@@ -1,0 +1,33 @@
+.button-add {
+    padding: 0;
+    width: 150px;
+    height: 50px;
+    border: 2px solid #fff;
+    margin: 35px 0 0 244px;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+    background-image: url(./../../images/pluse.svg);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 22px;
+    border-radius: 2px;
+}
+
+.button-add:hover {
+    opacity: 0.6;
+}
+
+@media all and (max-width: 1023px) {
+    .button-add {
+        margin-left: 54px;
+    }
+}
+
+@media all and (max-width: 767px) {
+    .button-add {
+        margin: 31px 0 0 0;
+        width: 282px;
+    }
+}

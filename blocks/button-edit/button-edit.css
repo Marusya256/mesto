@@ -1,0 +1,30 @@
+.button-edit {
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    border: 1px solid #fff;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+    margin: 15px 0 0 19px;
+    background-image: url(./../../images/edit.svg);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 10px;
+}
+
+.button-edit:hover {
+    opacity: 0.6;
+}
+
+@media all and (max-width: 767px) {
+    .button-edit {
+        width: 18px;
+        height: 18px;
+        margin: 8px 0 0 19px;
+        position: absolute;
+        top: 0px;
+        right: -27px;
+    }
+}
