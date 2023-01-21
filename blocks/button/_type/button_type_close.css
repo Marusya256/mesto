@@ -1,28 +1,20 @@
-.button-close {
-    padding: 0;
+.button_type_close {
     width: 32px;
     height: 32px;
-    border: none;
-    font: inherit;
-    color: inherit;
-    background-color: transparent;
-    cursor: pointer;
     margin: 15px 0 0 19px;
-    background-image: url(./../../images/close-icon.svg);
-    background-repeat: no-repeat;
-    background-position: 50%;
+    background-image: url(./../../../images/close-icon.svg);
     background-size: 30px;
     position: absolute;
     top: -55px;
     right: -40px;
 }
 
-.button-close:hover {
+.button_type_close:hover {
     opacity: 0.6;
 }
 
 @media all and (max-width: 767px) {
-    .button-close {
+    .button_type_close {
         width: 22px;
         height: 22px;
         background-size: 21px;

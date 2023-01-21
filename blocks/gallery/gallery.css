@@ -12,6 +12,5 @@
 @media all and (max-width: 767px) {
     .gallery {
         max-width: 282px;
-        margin: 0 auto;
     }
 }

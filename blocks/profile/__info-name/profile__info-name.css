@@ -4,11 +4,14 @@
     line-height: 48px;
     padding: 0;
     margin: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 293px;
 }
 
 @media all and (max-width: 767px) {
     .profile__info-name {
-        font-weight: 500;
         font-size: 27px;
         line-height: 33px;
     }
