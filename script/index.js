@@ -2,14 +2,18 @@ let buttonEdit = document.querySelector('.button_type_edit');
 let popup = document.querySelector('.popup');
 let buttonClose = document.querySelector('.button_type_close');
 
+let userName = document.querySelector('.popup__input_user_name');
+let userAbout = document.querySelector('.popup__input_user_about');
+
+let infoName = document.querySelector('.profile__info-name');
+let infoAbout = document.querySelector('.profile__info-about');
+
 function openPopup() {
     popup.classList.add('popup_opened');
 
-    let userName = infoname.textContent;
-    let aboutUser = infoabout.textContent;
+    userName.value = infoName.textContent;
+    userAbout.value = infoAbout.textContent;
 
-    document.getElementById("username").value = userName;
-    document.getElementById("aboutuser").value = aboutUser;
 }
 
 function closePopup() {
@@ -22,19 +26,15 @@ buttonClose.addEventListener('click', closePopup);
 
 
 let formElement = document.querySelector('.popup__container'); 
-let nameInput = document.querySelector('.popup__input_user_name'); 
-let jobInput = document.querySelector('.popup__input_user_about'); 
 
 function handleFormSubmit (evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
                                                 // Так мы можем определить свою логику отправки.
                                                 // О том, как это делать, расскажем позже.
 
-    let nameU = nameInput.value;
-    let jobU = jobInput.value;
 
-    document.getElementById("infoname").textContent = nameU;
-    document.getElementById("infoabout").textContent = jobU;
+    infoName.textContent = userName.value;
+    infoAbout.textContent = userAbout.value;
 
     closePopup();
 
