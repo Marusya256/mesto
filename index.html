@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="page">
-    <section class="popup">
+    <section class="popup popup-edit">
       <div class="popup__container">
         <h3 class="popup__header">Редактировать профиль</h3>
         <form>
@@ -19,6 +19,19 @@
           </fieldset>
         </form>
         <button type="button" class="button button_type_close"></button>
+      </div>
+    </section>
+    <section class="popup popup-add">
+      <div class="popup__container popup-place">
+        <h3 class="popup__header">Новое место</h3>
+        <form>
+          <fieldset class="popup__field">
+            <input class="popup__input popup__input_img_name" type="text" name="imgname" id="imgname" required placeholder="Название">
+            <input class="popup__input popup__input_img_link" type="text" name="imglink" id="imglink" required placeholder="Ссылка на картинку">
+            <button class="button button_type_sub" type="submit">Создать</button>
+          </fieldset>
+        </form>
+        <button type="button" class="button button_type_close close-add"></button>
       </div>
     </section>
     <header class="header">
@@ -37,56 +50,30 @@
             <button type="button" class="button button_type_add"></button>
         </section>
         <section class="gallery">
-          <ul class="gallery__list">
-            <li class="gallery-item">
-              <img class="gallery-item__photo" src="./images/karachevsk.jpg" alt="Фото Карачевск">
-              <div class="gallery-item__parameter">
-                <h2 class="gallery-item__text">Карачаево-Черкессия</h2>
-                <button type="button" class="button button_type_like"></button>
-              </div>
-            </li>
-            <li class="gallery-item">
-              <img class="gallery-item__photo" src="./images/elbrus.png" alt="Фото горы Эльбрус">
-              <div class="gallery-item__parameter">
-                <h2 class="gallery-item__text">Гора Эльбрус</h2>
-                <button type="button" class="button button_type_like"></button>
-              </div>
-            </li>
-            <li class="gallery-item">
-              <img class="gallery-item__photo" src="./images/dombay.png" alt="Фото Домбай">
-              <div class="gallery-item__parameter">
-                <h2 class="gallery-item__text">Домбай</h2>
-                <button type="button" class="button button_type_like"></button>
-              </div>
-            </li>
-            <li class="gallery-item">
-              <img class="gallery-item__photo" src="./images/piter.jpeg" alt="Фото Санкт-Петербург">
-              <div class="gallery-item__parameter">
-                <h2 class="gallery-item__text">Санкт-Петербург</h2>
-                <button type="button" class="button button_type_like"></button>
-              </div>
-            </li>
-            <li class="gallery-item">
-              <img class="gallery-item__photo" src="./images/khabarovsk.jpg" alt="Фото Хабаровск">
-              <div class="gallery-item__parameter">
-                <h2 class="gallery-item__text">Хабаровск</h2>
-                <button type="button" class="button button_type_like"></button>
-              </div>
-            </li>
-            <li class="gallery-item">
-              <img class="gallery-item__photo" src="./images/london.jpg" alt="Фото Лондон">
-              <div class="gallery-item__parameter">
-                <h2 class="gallery-item__text">Лондон</h2>
-                <button type="button" class="button button_type_like"></button>
-              </div>
-            </li>
-          </ul>
+          <div class="gallery__list"></div>
+        </section>
+        <section class="image-container">
+          <div class="popup-image">
+            <img class="image-container__photo" src="#" alt="Изображение места">
+            <h3 class="image-container__name"></h3>
+            <button type="button" class="button button_type_close" id="close-img"></button>
+          </div>
         </section>
     </main>
     <footer class="footer">
             <p class="footer__text">© 2020 Mesto Russia</p>
     </footer>
   </div>
+  <template id="card-template">
+      <div class="gallery-item">
+        <img class="gallery-item__photo" alt="Изображение места">
+        <div class="gallery-item__parameter">
+          <h2 class="gallery-item__text"></h2>
+          <button type="button" class="button button_type_like"></button>
+        </div>
+        <button type="button" class="button button_type_del"></button>
+      </div>
+  </template>
   <script src="./script/index.js"></script>
 </body>
 </html>
