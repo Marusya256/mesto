@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="page">
-    <section class="popup popup-edit">
+    <div class="popup popup-edit">
       <div class="popup__container">
         <h3 class="popup__header">Редактировать профиль</h3>
         <form>
@@ -20,8 +20,8 @@
         </form>
         <button type="button" class="button button_type_close"></button>
       </div>
-    </section>
-    <section class="popup popup-add">
+    </div>
+    <div class="popup popup-add">
       <div class="popup__container popup-place">
         <h3 class="popup__header">Новое место</h3>
         <form>
@@ -33,7 +33,7 @@
         </form>
         <button type="button" class="button button_type_close close-add"></button>
       </div>
-    </section>
+    </div>
     <header class="header">
         <img class="logo" src="./images/Logo.svg" alt="Логотип">
     </header>
@@ -52,13 +52,13 @@
         <section class="gallery">
           <div class="gallery__list"></div>
         </section>
-        <section class="image-container">
+        <div class="popup popup-view">
           <div class="popup-image">
-            <img class="image-container__photo" src="#" alt="Изображение места">
-            <h3 class="image-container__name"></h3>
+            <img class="popup__photo" src="#" alt="Изображение места">
+            <h3 class="popup__label"></h3>
             <button type="button" class="button button_type_close" id="close-img"></button>
           </div>
-        </section>
+        </div>
     </main>
     <footer class="footer">
             <p class="footer__text">© 2020 Mesto Russia</p>

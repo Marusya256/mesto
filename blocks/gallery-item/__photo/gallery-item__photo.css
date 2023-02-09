@@ -7,4 +7,5 @@
     margin: 0;
     display: block;
     cursor: pointer;
+    object-fit: cover
 }
