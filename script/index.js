@@ -93,7 +93,7 @@ function addCard(item) {
   cardContainer.prepend(cardElement);
 
   galleryPhoto.addEventListener('click', function () {
-    popupImg(item);
+    showImg(item);
   });
 
 
@@ -106,19 +106,18 @@ const popupView = document.querySelector('.popup-view');
 const buttonCloseImg = document.querySelector('#close-img');
 const popupPhoto = popupView.querySelector('.popup__photo');
 const popupLabel = popupView.querySelector('.popup__label');
-const galleryPhoto = document.querySelectorAll('.gallery-item__photo');
+const galleryPhoto = document.querySelectorAll('.gallery-item__photo'); 
 
-function popupImg(item) {
+buttonCloseImg.addEventListener('click', function () {
+    closePopup(popupView);
+  });
+
+function showImg(item) {
   openPopup(popupView);
 
   popupLabel.textContent = item.name;
   popupPhoto.src = item.link;
   popupPhoto.setAttribute('alt', item.name);
-    
-
-  buttonCloseImg.addEventListener('click', function () {
-    closePopup(popupView);
-  });
 
 }
 
@@ -142,7 +141,7 @@ buttonCloseAdd.addEventListener('click', function () {
 const imgName = document.querySelector('.popup__input_img_name');
 const imgLink = document.querySelector('.popup__input_img_link');
 
-let formElementAdd = document.querySelector('.popup-place'); 
+const formElementAdd = document.querySelector('.popup-place'); 
 
 function addFormSubmit (evt) {
   evt.preventDefault(); 
