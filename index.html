@@ -10,10 +10,12 @@
     <div class="popup popup-edit">
       <div class="popup__container">
         <h3 class="popup__header">Редактировать профиль</h3>
-        <form>
+        <form class="popup__form" novalidate>
           <fieldset class="popup__field">
-            <input class="popup__input popup__input_user_name" type="text" name="username" id="username" required placeholder="Введите имя">
-            <input class="popup__input popup__input_user_about" type="text" name="aboutuser" id="aboutuser" required placeholder="Напишите о себе">
+            <input class="popup__input popup__input_user_name" type="text" name="username" id="username" required placeholder="Введите имя" minlength="2" maxlength="40">
+            <span class="popup__input-error username-error"></span>
+            <input class="popup__input popup__input_user_about" type="text" name="aboutuser" id="aboutuser" required placeholder="Напишите о себе" minlength="2" maxlength="200">
+            <span class="popup__input-error aboutuser-error"></span>
             <button class="button button_type_sub" type="submit">Сохранить</button>
           </fieldset>
         </form>
@@ -23,10 +25,12 @@
     <div class="popup popup-add">
       <div class="popup__container popup-place">
         <h3 class="popup__header">Новое место</h3>
-        <form>
+        <form class="popup__form" novalidate>
           <fieldset class="popup__field">
             <input class="popup__input popup__input_img_name" type="text" name="imgname" id="imgname" required placeholder="Название">
-            <input class="popup__input popup__input_img_link" type="text" name="imglink" id="imglink" required placeholder="Ссылка на картинку">
+            <span class="popup__input-error imgname-error"></span>
+            <input class="popup__input popup__input_img_link" type="url" name="imglink" id="imglink" required placeholder="Ссылка на картинку">
+            <span class="popup__input-error imglink-error"></span>
             <button class="button button_type_sub" type="submit">Создать</button>
           </fieldset>
         </form>
@@ -72,6 +76,7 @@
         <button type="button" class="button button_type_del"></button>
       </div>
   </template>
-  <script src="./script/index.js"></script>
+  <script defer src="./script/index.js"></script>
+  <script defer src="./script/validate.js"></script>
 </body>
 </html>

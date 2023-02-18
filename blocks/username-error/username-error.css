@@ -1,0 +1,11 @@
+.username-error {
+    top: 142px;
+    left: 35px;
+}
+
+@media all and (max-width: 767px) {    
+    .username-error {
+        top: 185px;
+        left: 22px;
+    }
+}

@@ -1,0 +1,11 @@
+.aboutuser-error {
+    top: 200px;
+    left: 35px;
+}
+
+@media all and (max-width: 767px) {    
+    .aboutuser-error {
+        top: 268px;
+        left: 22px;
+    }
+}
