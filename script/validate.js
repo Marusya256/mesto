@@ -21,7 +21,7 @@ const hideInputError = (formsConfig, formElement, inputElement) => {
   errorClass.textContent = '';
 };
 
-const isValid = (formElement, inputElement) => {
+const isValid = (formsConfig, formElement, inputElement) => {
   if (!inputElement.validity.valid) {
     showInputError(formsConfig, formElement, inputElement, inputElement.validationMessage);
   } else {
@@ -33,12 +33,12 @@ const setEventListeners = (formsConfig, formElement) => {
   const inputList = Array.from(formElement.querySelectorAll(formsConfig.inputSelector));
   const buttonElement = formElement.querySelector(formsConfig.submitButtonSelector);
 
-  toggleButtonState(inputList, buttonElement);
+  toggleButtonState(formsConfig, inputList, buttonElement);
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
-      isValid(formElement, inputElement);
-      toggleButtonState(inputList, buttonElement);
+      isValid(formsConfig, formElement, inputElement);
+      toggleButtonState(formsConfig, inputList, buttonElement);
     });
   });
 };
@@ -49,7 +49,7 @@ const hasInvalidInput = (inputList) => {
   })
 };
 
-const toggleButtonState = (inputList, buttonElement) => {
+const toggleButtonState = (formsConfig, inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(formsConfig.buttonSubInactive);
     buttonElement.setAttribute('disabled', 'disabled');
