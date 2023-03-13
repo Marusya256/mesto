@@ -1,32 +1,7 @@
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
 class Card {  
   constructor(data, templateSelector, showImg) {
+    this._data = data;
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
@@ -55,10 +30,12 @@ class Card {
   }
   
    _setEventListeners() {
-    this._element.querySelector('.button_type_like').addEventListener('click', () => {
-      this._toggleLike();
-    });
+    this._buttonLike = this._element.querySelector('.button_type_like');
 
+    this._buttonLike.addEventListener('click', () => {
+      this._likeElement();
+    });                    
+ 
     this._element.querySelector('.button_type_del').addEventListener('click', () => {
       this._delElement();
     });
@@ -68,8 +45,8 @@ class Card {
     });
   }
 
-  _toggleLike() {
-    this._element.querySelector('.button_type_like').classList.toggle('button_type_like_active');
+  _likeElement() {
+    this._buttonLike.classList.toggle('button_type_like_active');
   }
 
   _delElement() {
@@ -77,16 +54,9 @@ class Card {
   }
 
   _zoomImg() {
-    this._showImg(this._element);                         
+    this._showImg(this._data);                         
   }
 
 }
-
-initialCards.forEach((item) => {
-  const newCard = new Card(item, '#card-template');
-  const cardElement = newCard.generateCard();
-
-  document.querySelector('.gallery__list').append(cardElement);
-});
 
 export {Card};

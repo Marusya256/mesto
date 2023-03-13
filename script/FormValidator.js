@@ -1,17 +1,23 @@
 class FormValidator {
   constructor(formsConfig, form) {
-    this._formSelector = formsConfig.formSelector;
     this._inputSelector = formsConfig.inputSelector;
     this._submitButtonSelector = formsConfig.submitButtonSelector;
     this._errorClass = formsConfig.errorClass;
     this._errorActive = formsConfig.errorActive;
     this._buttonSubInactive = formsConfig.buttonSubInactive;
     this._formElement = form;
+    this._buttonTypeSubAdd = document.querySelector('.button_type_sub-add');
+    this._buttonElement = form.querySelector('.button_type_sub');
   }
 
   enableValidation () {
-    this._setEventListeners(this._formElement)
+    this._setEventListeners()
   };
+
+  disableButton () {
+    this._buttonTypeSubAdd.setAttribute('disabled', 'disabled');
+    this._buttonTypeSubAdd.classList.add(this._buttonSubInactive);
+  }
 
   _showInputError (inputElement, errorMessage) {
     const errorClass = this._formElement.querySelector(`.${inputElement.id}-error`);
@@ -37,14 +43,13 @@ class FormValidator {
   
   _setEventListeners () {
     const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-    const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
   
-    this._toggleButtonState(inputList, buttonElement);
+    this._toggleButtonState(inputList);
   
     inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._isValid(inputElement);
-        this._toggleButtonState(inputList, buttonElement);
+        this._toggleButtonState(inputList);
       });
     });
   };
@@ -55,13 +60,13 @@ class FormValidator {
     })
   };
   
-  _toggleButtonState (inputList, buttonElement) {
+  _toggleButtonState (inputList) {
     if (this._hasInvalidInput(inputList)) {
-      buttonElement.classList.add(this._buttonSubInactive);
-      buttonElement.setAttribute('disabled', 'disabled');
+      this._buttonElement.classList.add(this._buttonSubInactive);
+      this._buttonElement.setAttribute('disabled', 'disabled');
     } else {
-      buttonElement.classList.remove(this._buttonSubInactive);
-      buttonElement.removeAttribute('disabled');
+      this._buttonElement.classList.remove(this._buttonSubInactive);
+      this._buttonElement.removeAttribute('disabled');
     }
   };
 

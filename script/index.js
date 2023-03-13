@@ -1,5 +1,6 @@
 import {Card} from './card.js';
 import {FormValidator} from './FormValidator.js';
+import {initialCards} from './constants.js';
 
 const buttonEdit = document.querySelector('.button_type_edit');
 const popupEdit = document.querySelector('.popup-edit');
@@ -11,18 +12,39 @@ const userAbout = document.querySelector('.popup__input_user_about');
 const infoName = document.querySelector('.profile__info-name');
 const infoAbout = document.querySelector('.profile__info-about');
 
+const galleryList = document.querySelector('.gallery__list');
+
 const formsConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.button_type_sub',
   errorClass: 'popup__input_type_error',
   errorActive: 'popup__input-error_active',
-  buttonSubInactive: 'button_type_sub_inactive'
+  buttonSubInactive: 'button_type_sub_inactive',
+  buttonTypeSubAdd: '.button_type_sub-add'
 };
 
+const validEdit = new FormValidator(formsConfig, popupEdit);
+validEdit.enableValidation();
+
+function renderCards (cardData) {
+  const newCard = new Card(cardData, '#card-template', showImg);
+  const cardElement = newCard.generateCard();
+
+  return cardElement;
+}
+
+
+initialCards.forEach((cardData) => {
+  const cardEl = renderCards(cardData);
+
+  galleryList.append(cardEl); 
+});
+
+
 function closePopupEsc(evt) {
-  const popupIsOpened = document.querySelector('.popup_opened');
   if (evt.key === "Escape") {
+    const popupIsOpened = document.querySelector('.popup_opened');
     closePopup(popupIsOpened);
   }
 }
@@ -49,9 +71,6 @@ function closePopup (popup) {
 buttonEdit.addEventListener('click', function () {
   openPopup(popupEdit);
 
-  const validEdit = new FormValidator(formsConfig, popupEdit);
-  validEdit.enableValidation();
-
   userName.value = infoName.textContent;
   userAbout.value = infoAbout.textContent;
 });
@@ -74,8 +93,6 @@ function handleFormEditSubmit (evt) {
 
 formElementEdit.addEventListener('submit', handleFormEditSubmit);
 
-
-
 const popupView = document.querySelector('.popup-view');
 const buttonCloseImg = document.querySelector('#close-img');
 const popupPhoto = popupView.querySelector('.popup__photo');
@@ -83,25 +100,24 @@ const popupLabel = popupView.querySelector('.popup__label');
 
 buttonCloseImg.addEventListener('click', function () {
     closePopup(popupView);
-  });
+});
 
-function showImg(item) {
+function showImg(cardData) {
   openPopup(popupView);
 
-  popupLabel.textContent = item.name;
-  popupPhoto.src = item.link;
-  popupPhoto.setAttribute('alt', item.name);
+  popupLabel.textContent = cardData.name;
+  popupPhoto.src = cardData.link;
+  popupPhoto.setAttribute('alt', cardData.name);
 }
 
 const popupAdd = document.querySelector('.popup-add');
 const buttonCloseAdd = document.querySelector('.close-add');
 const buttonAdd = document.querySelector('.button_type_add');
+const validAdd = new FormValidator(formsConfig, popupAdd);
+validAdd.enableValidation();
 
 buttonAdd.addEventListener('click', function () {
   openPopup(popupAdd);
-
-  const validAdd = new FormValidator(formsConfig, popupAdd);
-  validAdd.enableValidation();
 });
 
 buttonCloseAdd.addEventListener('click', function () {
@@ -110,26 +126,23 @@ buttonCloseAdd.addEventListener('click', function () {
 
 const imgName = document.querySelector('.popup__input_img_name');
 const imgLink = document.querySelector('.popup__input_img_link');
-const buttonSubAdd = document.querySelector('.button_type_sub-add');
 const formElementAdd = document.querySelector('.popup-place'); 
 
-function addFormSubmit (evt) {
+function handleCardFormSubmit (evt) {
   evt.preventDefault(); 
 
-  const item = {name: imgName.value, link: imgLink.value};
+  const cardData = {name: imgName.value, link: imgLink.value};
 
-  const newCard = new Card(item, '#card-template', showImg);
-  const cardElement = newCard.generateCard();
-  document.querySelector('.gallery__list').prepend(cardElement);
+  const cardEl = renderCards(cardData);
+  galleryList.prepend(cardEl);
 
   closePopup(popupAdd);
 
   imgName.value = '';
   imgLink.value = '';
-  buttonSubAdd.setAttribute('disabled', 'disabled');
-  buttonSubAdd.classList.add('button_type_sub_inactive');
+  validEdit.disableButton();
 
 }
 
-formElementAdd.addEventListener('submit', addFormSubmit);
+formElementAdd.addEventListener('submit', handleCardFormSubmit);
 
